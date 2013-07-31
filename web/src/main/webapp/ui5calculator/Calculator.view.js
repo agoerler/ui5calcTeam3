@@ -11,7 +11,7 @@ sap.ui
 						var that = this; // allow private functions to access this
 						function createDisplayRow() {
 							var oDisplay = new sap.ui.commons.TextView(
-									"display", {
+									"calc-display", {
 										text : '{/display}',
 										textAlign : sap.ui.core.TextAlign.Right
 									});
@@ -27,7 +27,7 @@ sap.ui
 
 							var oRow = new sap.ui.commons.layout.MatrixLayoutRow(
 									{
-										id : 'Row-0',
+										id : 'calc-row0',
 										height : '25px'
 									});
 							oRow.addCell(oDisplayCell);
@@ -67,27 +67,28 @@ sap.ui
 
 						// matrix
 						var oLayout = new sap.ui.commons.layout.MatrixLayout({
-							id : 'calcMatrix',
+							id : 'calc-matrix',
 							layoutFixed : true,
 							columns : 4,
 							width : '200px'
 						});
 
 						oLayout.addRow(createDisplayRow());
-						oLayout.addRow(createButtonRow('Row-1', [ '!<-', 'C',
+						oLayout.addRow(createButtonRow('calc-row1', [ '!<-', 'C',
 								'!CE', '!+/-' ]));
-						oLayout.addRow(createButtonRow('Row-2', [ '7', '8',
+						oLayout.addRow(createButtonRow('calc-row2', [ '7', '8',
 								'9', '!/' ]));
-						oLayout.addRow(createButtonRow('Row-3', [ '4', '5',
+						oLayout.addRow(createButtonRow('calc-row3', [ '4', '5',
 								'6', '!*' ]));
-						oLayout.addRow(createButtonRow('Row-4', [ '1', '2',
+						oLayout.addRow(createButtonRow('calc-row4', [ '1', '2',
 								'3', '!-' ]));
-						oLayout.addRow(createButtonRow('Row-5', [ '0', '0',
+						oLayout.addRow(createButtonRow('calc-row5', [ '0', '0',
 								'!,', '+' ]));
-						oLayout.addRow(createButtonRow('Row-6', [ '=', '=',
+						oLayout.addRow(createButtonRow('calc-row6', [ '=', '=',
 								'=', '=' ]));
 
 						var oPanel = new sap.ui.commons.Panel({
+							id : "calc-panel",
 							text : "UI5 Calculator",
 							width : '210px',
 							showCollapseIcon : false,
@@ -113,7 +114,7 @@ sap.ui
 								} else {
 									enabled = true;
 								}
-								var oCell = createButtonCell(rowId + '_'
+								var oCell = createButtonCell(rowId + '-col'
 										+ i, label, colSpan, enabled);
 								oRow.addCell(oCell);
 								colSpan = 1;
