@@ -14,10 +14,6 @@
 	<packaging>pom</packaging>
 	<name>UI5 Calculator Setup Module</name>
 
-	<properties>
-		<eclipse.path>... your eclipse path ...</eclipse.path>
-	</properties>
-
 	<build>
 		<plugins>
 			<plugin>
