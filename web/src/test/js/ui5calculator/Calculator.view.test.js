@@ -42,32 +42,32 @@ describe("A button row", function() {
 	it("should be filled with a cell with correct id, label, colspan and enablement", function() {
 		sut.fillButtonRow(oRow, "id", [ '0' ],
 				createButtonCell);
-		expect(createButtonCell).toHaveBeenCalledWith("id_0", '0', 1, true);
+		expect(createButtonCell).toHaveBeenCalledWith("id-col0", '0', 1, true);
 	});
 
 	it("given a prefix '!' in a label, should be filled with a cell with enablement falset", function() {
 		sut.fillButtonRow(oRow, "id", [ '!0' ],
 				createButtonCell);
-		expect(createButtonCell).toHaveBeenCalledWith("id_0", '0', 1, false);
+		expect(createButtonCell).toHaveBeenCalledWith("id-col0", '0', 1, false);
 	});
 
 	it("should be filled with only one cell if two cells have the same label", function() {
 		sut.fillButtonRow(oRow, "id", [ '0',  '0'],
 				createButtonCell);
-		expect(createButtonCell).toHaveBeenCalledWith("id_1", '0', 2, true);
+		expect(createButtonCell).toHaveBeenCalledWith("id-col1", '0', 2, true);
 	});
 
 	it("should be filled with only one cell if two cells have the same label and the prefix '!'", function() {
 		sut.fillButtonRow(oRow, "id", [ '!0',  '!0'],
 				createButtonCell);
-		expect(createButtonCell).toHaveBeenCalledWith("id_1", '0', 2, false);
+		expect(createButtonCell).toHaveBeenCalledWith("id-col1", '0', 2, false);
 	});
 
 	it("should be filled with two cells if two cells have the same label but one has the prefix '!'", function() {
 		sut.fillButtonRow(oRow, "id", [ '!0',  '0'],
 				createButtonCell);
-		expect(createButtonCell).toHaveBeenCalledWith("id_0", '0', 1, false);
-		expect(createButtonCell).toHaveBeenCalledWith("id_1", '0', 1, true);
+		expect(createButtonCell).toHaveBeenCalledWith("id-col0", '0', 1, false);
+		expect(createButtonCell).toHaveBeenCalledWith("id-col1", '0', 1, true);
 	});
 
 });

@@ -11,7 +11,7 @@ OM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<name>parent</name>
 
 	<properties>
-		<sap.cloud.ui5.version>1.10.3</sap.cloud.ui5.version>
+		<sap.cloud.ui5.version>1.12.7</sap.cloud.ui5.version>
 		<selenium.version>2.35.0</selenium.version>
 	</properties>
 

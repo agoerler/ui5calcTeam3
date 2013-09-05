@@ -15,7 +15,7 @@
 	<name>UI5 Calculator Setup Module</name>
 
 	<properties>
-		<eclipse.path>C:/eclipse/juno_java_EE_SR2/eclipse</eclipse.path>
+		<eclipse.path>... your eclipse path ...</eclipse.path>
 	</properties>
 
 	<build>
