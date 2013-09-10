@@ -1,3 +1,4 @@
+/*global sap */
 sap.ui.controller("ui5calculator.Calculator", {
 
 	operand : undefined,

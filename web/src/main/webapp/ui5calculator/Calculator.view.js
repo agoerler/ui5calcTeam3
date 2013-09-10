@@ -1,3 +1,4 @@
+/*global sap */
 sap.ui
 		.jsview(
 				"ui5calculator.Calculator",
