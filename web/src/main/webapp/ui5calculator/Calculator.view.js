@@ -90,7 +90,7 @@ sap.ui
 
 						var oPanel = new sap.ui.commons.Panel({
 							id : "calc-panel",
-							text : "UI5 Calculator",
+							text : "UI5 Calc Team 3",
 							width : '210px',
 							showCollapseIcon : false,
 							areaDesign : sap.ui.commons.enums.AreaDesign.Plain,
