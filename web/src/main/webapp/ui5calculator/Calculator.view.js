@@ -9,7 +9,8 @@ sap.ui
 					},
 
 					createContent : function(oController) {
-						var that = this; // allow private functions to access this
+						var that = this; // allow private functions to access
+											// this
 						function createDisplayRow() {
 							var oDisplay = new sap.ui.commons.TextView(
 									"calc-display", {
@@ -61,7 +62,8 @@ sap.ui
 								return oCell;
 							}
 
-							that.fillButtonRow(oRow, rowId, labels, createButtonCell);
+							that.fillButtonRow(oRow, rowId, labels,
+									createButtonCell);
 
 							return oRow;
 						}
@@ -75,10 +77,10 @@ sap.ui
 						});
 
 						oLayout.addRow(createDisplayRow());
-						oLayout.addRow(createButtonRow('calc-row1', [ '!<-', 'C',
-								'!CE', '!+/-' ]));
+						oLayout.addRow(createButtonRow('calc-row1', [ '!<-',
+								'C', '!CE', '!+/-' ]));
 						oLayout.addRow(createButtonRow('calc-row2', [ '7', '8',
-								'9', '!/' ]));
+								'9', '/' ]));
 						oLayout.addRow(createButtonRow('calc-row3', [ '4', '5',
 								'6', '!*' ]));
 						oLayout.addRow(createButtonRow('calc-row4', [ '1', '2',
@@ -86,7 +88,7 @@ sap.ui
 						oLayout.addRow(createButtonRow('calc-row5', [ '0', '0',
 								'!,', '+' ]));
 						oLayout.addRow(createButtonRow('calc-row6', [ '=', '=',
-								'=', '=' ]));
+								'=', '1/x' ]));
 
 						var oPanel = new sap.ui.commons.Panel({
 							id : "calc-panel",
@@ -99,7 +101,8 @@ sap.ui
 						return oPanel;
 					},
 
-					fillButtonRow : function(oRow, rowId, labels, createButtonCell) {
+					fillButtonRow : function(oRow, rowId, labels,
+							createButtonCell) {
 						var length = labels.length;
 						var colSpan = 1;
 						for ( var i = 0; i < length; i++) {
@@ -115,8 +118,9 @@ sap.ui
 								} else {
 									enabled = true;
 								}
-								var oCell = createButtonCell(rowId + '-col'
-										+ i, label, colSpan, enabled);
+								var oCell = createButtonCell(
+										rowId + '-col' + i, label, colSpan,
+										enabled);
 								oRow.addCell(oCell);
 								colSpan = 1;
 							}

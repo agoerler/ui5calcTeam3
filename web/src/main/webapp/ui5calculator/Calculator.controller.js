@@ -3,6 +3,7 @@ sap.ui.controller("ui5calculator.Calculator", {
 
 	operand : undefined,
 	startNext : true,
+	operation : undefined,
 
 	/**
 	 * Called when a controller is instantiated and its View controls (if
@@ -12,7 +13,7 @@ sap.ui.controller("ui5calculator.Calculator", {
 	 */
 	onInit : function() {
 		this.model = new sap.ui.model.json.JSONModel({
-			display : 0
+			display : 0,
 		});
 		this.startNext = true;
 		sap.ui.getCore().setModel(this.model);
@@ -42,7 +43,7 @@ sap.ui.controller("ui5calculator.Calculator", {
 	//
 	// },
 	setDisplayValue : function(value) {
-		value = parseInt("" + value);
+		value = parseFloat("" + value);
 		this.model.setProperty("/display", value);
 	},
 
@@ -69,13 +70,35 @@ sap.ui.controller("ui5calculator.Calculator", {
 
 		if ('+' == button) {
 			this.operand = this.model.getProperty("/display");
+			this.operation = button;
 			this.startNext = true;
+			return;
+		}
+
+		if ('/' == button) {
+			this.operand = this.model.getProperty("/display");
+			this.operation = button;
+			this.startNext = true;
+			return;
+		}
+
+		if ('1/x' == button) {
+			this.operand = this.model.getProperty("/display");
+
+			this.setDisplayValue(1 / this.operand);
 			return;
 		}
 
 		if ('=' == button) {
 			if (this.operand) {
-				var sum = this.model.getProperty("/display") + this.operand;
+				var sum;
+
+				if (this.operation == "+")
+					sum = this.model.getProperty("/display") + this.operand;
+
+				if (this.operation == "/")
+					sum = this.operand / this.model.getProperty("/display");
+
 				this.setDisplayValue(sum);
 			}
 			return;
