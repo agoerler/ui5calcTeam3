@@ -13,7 +13,7 @@ sap.ui.controller("ui5calculator.Calculator", {
 	 */
 	onInit : function() {
 		this.model = new sap.ui.model.json.JSONModel({
-			display : 0,
+			display : 0
 		});
 		this.startNext = true;
 		sap.ui.getCore().setModel(this.model);
@@ -61,8 +61,9 @@ sap.ui.controller("ui5calculator.Calculator", {
 			if (this.startNext) {
 				display = button;
 				this.startNext = false;
-			} else
+			} else {
 				display = "" + display + button;
+			}
 			this.setDisplayValue(display);
 		}
 	},
@@ -94,9 +95,11 @@ sap.ui.controller("ui5calculator.Calculator", {
 			return;
 		}
 
+		var currentValue;
+
 		if (',' == button) {
 
-			var currentValue = this.model.getProperty("/display");
+			currentValue = this.model.getProperty("/display");
 			if ((currentValue + "").indexOf(".") >= 0) {
 				return;
 			}
@@ -108,12 +111,16 @@ sap.ui.controller("ui5calculator.Calculator", {
 
 		if ('<-' == button) {
 
-			var currentValue = this.model.getProperty("/display") + "";
+			currentValue = this.model.getProperty("/display") + "";
+			
+			// remove last input
 			currentValue = currentValue.substring(0, currentValue.length - 1);
-			if (currentValue[currentValue.length - 1] === ".")
+			
+			if (currentValue[currentValue.length - 1] === ".") {
 				this.setDisplayValueAsString(currentValue);
-			else
+			} else {
 				this.setDisplayValue(currentValue);
+			}
 
 			return;
 		}
@@ -122,11 +129,13 @@ sap.ui.controller("ui5calculator.Calculator", {
 			if (this.operand) {
 				var sum;
 
-				if (this.operation == "+")
+				if (this.operation == "+"){
 					sum = this.model.getProperty("/display") + this.operand;
-
-				if (this.operation == "/")
+				}
+					
+				if (this.operation == "/"){
 					sum = this.operand / this.model.getProperty("/display");
+				}
 
 				this.setDisplayValue(sum);
 			}
