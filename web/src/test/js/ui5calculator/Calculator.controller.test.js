@@ -272,6 +272,65 @@ describe("Delete button", function() {
 		sut.buttonPressed("5");
 		sut.buttonPressed("<-");
 		expect(sut.model.getProperty("/display")).toBe("1.");
+
+	});
+});
+	
+describe("Multiplication ", function() {
+
+	var sut = undefined;
+
+	beforeEach(function() {
+		sut = sap.ui.controller("ui5calculator.Calculator");
+		sut.onInit();
 	});
 
+	it("should show 6 after pressing '2*3'", function() {
+		sut.buttonPressed("2");
+		sut.buttonPressed("*");
+		expect(sut.model.getProperty("/display")).toBe(2);
+		sut.buttonPressed("3");
+		expect(sut.model.getProperty("/display")).toBe(3);
+		sut.buttonPressed("=");
+		expect(sut.model.getProperty("/display")).toBe(6);
+	});
+
+});
+
+describe("Parantheses ", function() {
+
+	var sut = undefined;
+
+	beforeEach(function() {
+		sut = sap.ui.controller("ui5calculator.Calculator");
+		sut.onInit();
+	});
+
+// it("should show 27 after pressing '3*(4+5)'", function() {
+// sut.buttonPressed("3");
+// sut.buttonPressed("*");
+// expect(sut.model.getProperty("/display")).toBe(3);
+// sut.buttonPressed("(");
+// sut.buttonPressed("4");
+// sut.buttonPressed("+");
+// expect(sut.model.getProperty("/display")).toBe(4);
+// sut.buttonPressed("5");
+// sut.buttonPressed(")");
+// sut.buttonPressed("=");
+// expect(sut.model.getProperty("/display")).toBe(27);
+// });
+	
+	it("should show 27 after pressing '3*(4+5)'", function() {
+		sut.buttonPressed("3");
+		sut.buttonPressed("*");
+		expect(sut.model.getProperty("/display")).toBe(3);
+		sut.buttonPressed("(");
+		sut.buttonPressed("4");
+		sut.buttonPressed("+");
+		expect(sut.model.getProperty("/display")).toBe(4);
+		sut.buttonPressed("5");
+		sut.buttonPressed(")");
+		sut.buttonPressed("=");
+		expect(sut.model.getProperty("/display")).toBe(27);
+	});
 });
