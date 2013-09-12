@@ -77,7 +77,7 @@ sap.ui
 						});
 
 						oLayout.addRow(createDisplayRow());
-						oLayout.addRow(createButtonRow('calc-row1', [ '!<-',
+						oLayout.addRow(createButtonRow('calc-row1', [ '<-',
 								'C', '!CE', '!+/-' ]));
 						oLayout.addRow(createButtonRow('calc-row2', [ '7', '8',
 								'9', '/' ]));
@@ -86,7 +86,7 @@ sap.ui
 						oLayout.addRow(createButtonRow('calc-row4', [ '1', '2',
 								'3', '!-' ]));
 						oLayout.addRow(createButtonRow('calc-row5', [ '0', '0',
-								'!,', '+' ]));
+								',', '+' ]));
 						oLayout.addRow(createButtonRow('calc-row6', [ '=', '=',
 								'=', '1/x' ]));
 

@@ -153,21 +153,80 @@ describe("'Kehrwert!' ", function() {
 
 		expect(sut.model.getProperty("/display")).toBe(0.2);
 	});
-	
-	it("should be able to calculate after applying the 1/x operation", function() {
-		sut.buttonPressed("5");
-		sut.buttonPressed("1/x");
 
-		expect(sut.model.getProperty("/display")).toBe(0.2);
+	it("should be able to calculate after applying the 1/x operation",
+			function() {
+				sut.buttonPressed("5");
+				sut.buttonPressed("1/x");
+
+				expect(sut.model.getProperty("/display")).toBe(0.2);
+
+				sut.buttonPressed("+");
+
+				sut.buttonPressed("1");
+
+				sut.buttonPressed("=");
+
+				expect(sut.model.getProperty("/display")).toBe(1.2);
+
+			});
+
+});
+
+describe("'Input of decimal numbers' ", function() {
+
+	var sut = undefined;
+
+	beforeEach(function() {
+		sut = sap.ui.controller("ui5calculator.Calculator");
+		sut.onInit();
+	});
+
+	it("enter decimal number", function() {
+		sut.buttonPressed("0");
+		sut.buttonPressed(",");
+		sut.buttonPressed("5");
+
+		expect(sut.model.getProperty("/display")).toBe(0.5);
+	});
+
+	it("decimal number and plus operation", function() {
+		sut.buttonPressed("0");
+		sut.buttonPressed(",");
+		sut.buttonPressed("5");
 
 		sut.buttonPressed("+");
-		
+
 		sut.buttonPressed("1");
 
 		sut.buttonPressed("=");
-		
-		expect(sut.model.getProperty("/display")).toBe(1.2);
 
+		expect(sut.model.getProperty("/display")).toBe(1.5);
+	});
+
+	it("decimal number and plus operation with another decimal number",
+			function() {
+				sut.buttonPressed("0");
+				sut.buttonPressed(",");
+				sut.buttonPressed("5");
+
+				sut.buttonPressed("+");
+
+				sut.buttonPressed("0");
+				sut.buttonPressed(",");
+				sut.buttonPressed("5");
+
+				sut.buttonPressed("=");
+
+				expect(sut.model.getProperty("/display")).toBe(1);
+			});
+
+	it("should ignore second decimal point", function() {
+		sut.buttonPressed("0");
+		sut.buttonPressed(",");
+		sut.buttonPressed("5");
+		sut.buttonPressed(",");
+		expect(sut.model.getProperty("/display")).toBe(0.5);
 	});
 
 });
@@ -185,6 +244,34 @@ describe("Equals w/o operation does keep display value unchanged", function() {
 		sut.buttonPressed("5");
 		sut.buttonPressed("=");
 		expect(sut.model.getProperty("/display")).toBe(5);
+	});
+
+});
+
+
+describe("Delete button", function() {
+
+	var sut = undefined;
+
+	beforeEach(function() {
+		sut = sap.ui.controller("ui5calculator.Calculator");
+		sut.onInit();
+	});
+
+	it("should delete a digit", function() {
+		sut.buttonPressed("5");
+		sut.buttonPressed("4");
+		expect(sut.model.getProperty("/display")).toBe(54);
+		sut.buttonPressed("<-");
+		expect(sut.model.getProperty("/display")).toBe(5);
+	});
+	
+	it("should delete a digit", function() {
+		sut.buttonPressed("1");
+		sut.buttonPressed(",");
+		sut.buttonPressed("5");
+		sut.buttonPressed("<-");
+		expect(sut.model.getProperty("/display")).toBe("1.");
 	});
 
 });
